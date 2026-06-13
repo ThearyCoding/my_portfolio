@@ -1,0 +1,26 @@
+/* Base */
+@import 'css/base/variables.css';
+@import 'css/base/reset.css';
+@import 'css/base/typography.css';
+
+/* Layout */
+@import 'css/layout/main.css';
+@import 'css/layout/nav.css';
+@import 'css/layout/footer.css';
+
+/* Components */
+@import 'css/components/buttons.css';
+@import 'css/components/cards.css';
+@import 'css/components/chips.css';
+
+/* Sections */
+@import 'css/sections/hero.css';
+@import 'css/sections/about.css';
+@import 'css/sections/skills.css';
+@import 'css/sections/projects.css';
+@import 'css/sections/contact.css';
+
+/* Utils */
+@import 'css/utils/animations.css';
+@import 'css/utils/responsive.css';
+@import 'css/utils/utilities.css';

@@ -1,0 +1,44 @@
+@media (max-width: 768px) {
+  .nav-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  nav a {
+    margin: 0 8px;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .hero p {
+    font-size: 16px;
+  }
+  
+  .section {
+    padding: 16px 0;
+  }
+  
+  .skills-section .chip {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+  
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
