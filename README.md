@@ -56,7 +56,18 @@ Open <http://localhost:8080>. Save a file and refresh to see changes. Stop with 
 fvm dart pub global run jaspr_cli:jaspr build
 ```
 
-The static site is written to `build/jaspr/` and can be hosted on GitHub Pages, Netlify, Vercel or Firebase Hosting.
+The static site is written to `build/jaspr/`.
+
+## Deploying
+
+The site is hosted on Firebase Hosting: **https://chorn-theary-portfolio.web.app**
+
+```bash
+npx -y firebase-tools@latest login     # first time only
+npx -y firebase-tools@latest deploy --only hosting
+```
+
+`firebase.json` runs `jaspr build` automatically before each deploy, then uploads `build/jaspr/`.
 
 ## Project structure
 
