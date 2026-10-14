@@ -1,22 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="scaffolded-by" content="https://github.com/schultek/jaspr">
+        <meta name="description" content="Chorn Theary — Full Stack Developer from Phnom Penh building mobile apps, websites and APIs with Flutter, Jaspr and Node.js.">
+        <meta name="theme-color" content="#07090f">
 
-        <title>Theary Coding</title>
+        <title>Chorn Theary · Full Stack Developer</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap">
         <link rel="stylesheet" href="styles.css">
-        
-        <!-- The generated flutter manifest and bootstrap script -->
+
         <link rel="manifest" href="manifest.json">
-        <script src="flutter_bootstrap.js" async></script>
+        <link rel="icon" href="favicon.ico">
 
         <!--
             Loads and runs the compiled 'main.client.dart' file,
             can be changed to any other '.client.dart' file inside /lib.
         -->
         <script defer src="main.client.dart.js"></script>
+
+        <!-- Fade sections in as they scroll into view. Watches for Jaspr-rendered nodes. -->
+        <script>
+            (() => {
+                const io = new IntersectionObserver((entries) => {
+                    for (const e of entries) {
+                        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+                    }
+                }, { threshold: 0.12 });
+                const scan = () => document.querySelectorAll('.reveal:not([data-obs])').forEach((el) => {
+                    el.dataset.obs = '1';
+                    io.observe(el);
+                });
+                new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        </script>
     </head>
     <body>
         <!-- Your app component will be inserted here. -->

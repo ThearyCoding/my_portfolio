@@ -1,88 +1,63 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../widgets/icons.dart';
+
 class SkillsSection extends StatelessComponent {
   const SkillsSection({super.key});
 
+  static const _categories = [
+    (
+      'code',
+      'Languages',
+      ['Dart', 'TypeScript', 'JavaScript', 'Java', 'PHP', 'C#', 'Python', 'HTML/CSS'],
+    ),
+    ('globe', 'Frontend', ['Flutter', 'Jaspr', 'React', 'TypeScript/React']),
+    (
+      'server',
+      'Backend',
+      ['Node.js', 'Express.js', 'ASP.NET', 'Java Spring', 'PHP Laravel', 'REST APIs'],
+    ),
+    ('database', 'Databases', ['MongoDB', 'MySQL', 'SQL Server', 'Firebase', 'Supabase']),
+    (
+      'cloud',
+      'Cloud & DevOps',
+      ['AWS', 'Microsoft Azure', 'DigitalOcean', 'Cloudinary', 'Cloudflare'],
+    ),
+    ('wrench', 'Tools', ['Git', 'Firebase', 'Supabase', 'Cloudinary', 'API Integration']),
+  ];
+
+  static const _ticker = [
+    'Flutter', 'Dart', 'Jaspr', 'React', 'TypeScript', 'Node.js', 'Express',
+    'ASP.NET', 'Spring', 'Laravel', 'MongoDB', 'MySQL', 'Firebase', 'Supabase',
+    'AWS', 'Azure', 'Cloudflare', 'Git',
+  ];
+
   @override
   Component build(BuildContext context) {
-    return section(id: 'skills', classes: 'skills-section', [
-      h2([Component.text('💻 Tech Stack & Skills')]),
-      
-      // Programming Languages
-      div(classes: 'skill-category', [
-        h3([Component.text('Programming Languages')]),
-        div(classes: 'chips', [
-          span(classes: 'chip', [Component.text('Dart')]),
-          span(classes: 'chip', [Component.text('TypeScript')]),
-          span(classes: 'chip', [Component.text('JavaScript')]),
-          span(classes: 'chip', [Component.text('Java')]),
-          span(classes: 'chip', [Component.text('PHP')]),
-          span(classes: 'chip', [Component.text('C#')]),
-          span(classes: 'chip', [Component.text('Python')]),
-          span(classes: 'chip', [Component.text('HTML/CSS')]),
+    return section(id: 'skills', classes: 'section reveal', [
+      div(classes: 'section-head', [
+        span(classes: 'eyebrow', [Component.text('03 — Skills')]),
+        h2([Component.text('Tech stack & tools')]),
+      ]),
+      div(classes: 'ticker', attributes: const {'aria-hidden': 'true'}, [
+        div(classes: 'ticker-track', [
+          // Rendered twice so the loop is seamless.
+          for (var i = 0; i < 2; i++)
+            for (final t in _ticker) span(classes: 'ticker-item', [Component.text(t)]),
         ]),
       ]),
-      
-      // Frontend Development
-      div(classes: 'skill-category', [
-        h3([Component.text('Frontend Development')]),
-        div(classes: 'chips', [
-          span(classes: 'chip', [Component.text('Flutter')]),
-          span(classes: 'chip', [Component.text('Jaspr')]),
-          span(classes: 'chip', [Component.text('React')]),
-          span(classes: 'chip', [Component.text('TypeScript/React')]),
-        ]),
-      ]),
-      
-      // Backend Development
-      div(classes: 'skill-category', [
-        h3([Component.text('Backend Development')]),
-        div(classes: 'chips', [
-          span(classes: 'chip', [Component.text('Node.js')]),
-          span(classes: 'chip', [Component.text('Express.js')]),
-          span(classes: 'chip', [Component.text('ASP.NET')]),
-          span(classes: 'chip', [Component.text('Java Spring')]),
-          span(classes: 'chip', [Component.text('PHP Laravel')]),
-          span(classes: 'chip', [Component.text('REST APIs')]),
-        ]),
-      ]),
-      
-      // Databases
-      div(classes: 'skill-category', [
-        h3([Component.text('Databases')]),
-        div(classes: 'chips', [
-          span(classes: 'chip', [Component.text('MongoDB')]),
-          span(classes: 'chip', [Component.text('MySQL')]),
-          span(classes: 'chip', [Component.text('SQL Server')]),
-          span(classes: 'chip', [Component.text('Firebase')]),
-          span(classes: 'chip', [Component.text('Supabase')]),
-        ]),
-      ]),
-      
-      // Cloud & DevOps
-      div(classes: 'skill-category', [
-        h3([Component.text('Cloud & DevOps')]),
-        div(classes: 'chips', [
-          span(classes: 'chip', [Component.text('AWS')]),
-          span(classes: 'chip', [Component.text('Microsoft Azure')]),
-          span(classes: 'chip', [Component.text('DigitalOcean')]),
-          span(classes: 'chip', [Component.text('Cloudinary')]),
-          span(classes: 'chip', [Component.text('Cloudflare')]),
-          span(classes: 'chip', [Component.text('Git')]),
-        ]),
-      ]),
-      
-      // Tools & Technologies
-      div(classes: 'skill-category', [
-        h3([Component.text('Tools & Technologies')]),
-        div(classes: 'chips', [
-          span(classes: 'chip', [Component.text('Firebase')]),
-          span(classes: 'chip', [Component.text('Supabase')]),
-          span(classes: 'chip', [Component.text('Cloudinary')]),
-          span(classes: 'chip', [Component.text('Git')]),
-          span(classes: 'chip', [Component.text('API Integration')]),
-        ]),
+      div(classes: 'skills-grid', [
+        for (final (icon, title, items) in _categories)
+          div(classes: 'card skill-card', [
+            div(classes: 'skill-card-head', [
+              Icon(icon),
+              h3([Component.text(title)]),
+            ]),
+            div(classes: 'chips', [
+              for (final item in items) span(classes: 'chip', [Component.text(item)]),
+            ]),
+          ]),
       ]),
     ]);
   }

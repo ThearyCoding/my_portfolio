@@ -1,11 +1,11 @@
 {
-    "name": "my_portfolio",
-    "short_name": "my_portfolio",
+    "name": "Chorn Theary · Portfolio",
+    "short_name": "Chorn Theary",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Jaspr project",
+    "background_color": "#07090f",
+    "theme_color": "#07090f",
+    "description": "Portfolio of Chorn Theary, Full Stack Developer",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

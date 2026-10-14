@@ -1,9 +1,11 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import 'icons.dart';
+
 class ProjectCard extends StatelessComponent {
   final String title;
-  final String? subTitle;  // New subtitle field
+  final String? subTitle;
   final String description;
   final String? appLogo;
   final String? playStoreUrl;
@@ -14,7 +16,7 @@ class ProjectCard extends StatelessComponent {
   const ProjectCard({
     super.key,
     required this.title,
-    this.subTitle,  // Make it optional
+    this.subTitle,
     required this.description,
     this.appLogo,
     this.playStoreUrl,
@@ -25,82 +27,56 @@ class ProjectCard extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return div(classes: 'card project-card', [
-      // Header with logo and title
+    return article(classes: 'card project-card', [
       div(classes: 'project-header', [
         if (appLogo != null)
-          div(classes: 'project-logo-wrapper', [
-            img(src: appLogo!, alt: '$title logo', classes: 'project-logo'),
-          ])
+          img(src: appLogo!, alt: '$title logo', classes: 'project-logo')
         else
-          div(classes: 'project-logo-placeholder', [
-            span(classes: 'project-icon', [Component.text('📱')]),
-          ]),
-        
-        // Title and subtitle container
+          div(classes: 'project-logo placeholder', [const Icon('phone')]),
         div(classes: 'project-title-group', [
           h3([Component.text(title)]),
-          if (subTitle != null)
-            span(classes: 'project-subtitle', [Component.text(subTitle!)]),
+          if (subTitle != null) span(classes: 'project-subtitle', [Component.text(subTitle!)]),
         ]),
       ]),
-      
-      // Description
       p(classes: 'project-description', [Component.text(description)]),
-      
-      // Technologies used (chips)
       if (technologies != null && technologies!.isNotEmpty)
-        div(classes: 'project-tech', [
-          ...technologies!.map((tech) => 
-            span(classes: 'tech-chip', [Component.text(tech)])
-          ),
+        div(classes: 'chips', [
+          for (final tech in technologies!) span(classes: 'chip small', [Component.text(tech)]),
         ]),
-      
-      // App Store Badges
-      div(classes: 'store-badges', [
+      div(classes: 'project-links', [
         if (playStoreUrl != null)
-          a(
-            href: playStoreUrl!,
-            target: Target.blank,
-            attributes: const {'rel': 'noopener noreferrer'},
-            classes: 'store-badge',
-            [
-              img(
-                src: 'https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png',
-                alt: 'Get it on Google Play',
-                classes: 'play-badge',
-              ),
-            ],
+          _badge(
+            playStoreUrl!,
+            'https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png',
+            'Get it on Google Play',
+            'play-badge',
           ),
         if (appStoreUrl != null)
-          a(
-            href: appStoreUrl!,
-            target: Target.blank,
-            attributes: const {'rel': 'noopener noreferrer'},
-            classes: 'store-badge',
-            [
-              img(
-                src: 'https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg',
-                alt: 'Download on the App Store',
-                classes: 'appstore-badge',
-              ),
-            ],
+          _badge(
+            appStoreUrl!,
+            'https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg',
+            'Download on the App Store',
+            'appstore-badge',
           ),
-      ]),
-      
-      // GitHub link (optional)
-      if (githubUrl != null)
-        div(classes: 'github-link', [
+        if (githubUrl != null)
           a(
             href: githubUrl!,
             target: Target.blank,
+            classes: 'button ghost small',
             attributes: const {'rel': 'noopener noreferrer'},
-            [
-              span(classes: 'github-icon', [Component.text('📦')]),
-              Component.text(' View Source Code'),
-            ],
+            [const Icon('github'), Component.text('View source')],
           ),
-        ]),
+      ]),
     ]);
+  }
+
+  Component _badge(String href, String src, String alt, String imgClass) {
+    return a(
+      href: href,
+      target: Target.blank,
+      classes: 'store-badge',
+      attributes: const {'rel': 'noopener noreferrer'},
+      [img(src: src, alt: alt, classes: imgClass)],
+    );
   }
 }
